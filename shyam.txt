@@ -1,1 +1,52 @@
 This is for test to add into my git repository.
+
+//Bind datePicker
+bindDatePicker: function (selector, settings) {
+                var datePicker = typeof selector == 'object' ? selector : (selector == undefined ? $(".dateField") : $(selector));
+                if (datePicker != undefined && datePicker.length > 0) {
+                    datePicker.removeClass("dateField").addClass("dateField");
+
+                    var datePickerSettings = $.extend({
+                        showOn: "button",
+                        buttonImage: "../../iClosingsWeb/UI/Shared/Images/calender_icon.png",
+                        buttonImageOnly: true,
+                        buttonText: "Select date",
+                        showAnim: "slideDown",
+                        changeYear: true,
+                        disabled: false,
+                        yearRange: ICDUtility.Common.icdCommonBusinessData.moduleName == "OrderEntry" ? "1900:2500" : "c-10:c+10",                        
+                        onSelect: function () { $(this).change().focus(); },
+                    }, settings != undefined ? settings : {});
+
+                    ICDUtility.DateUtility.unbindDatePicker(datePicker).datepicker(datePickerSettings); 
+
+                    datePickerSettings = null;
+                }
+                datePicker = null;
+            },
+            
+            
+            
+            
+             unbindDatePicker: function (dateControl) {
+                if (dateControl != undefined && dateControl.length > 0) {
+                    //dateControl.datepicker("option", "disabled", false);
+                    dateControl.datepicker('enable');
+                    dateControl.datepicker("destroy");                   
+                }
+                return dateControl;
+            },
+
+            refreshDatePicker: function (selector) {
+                $(selector).datepicker("refresh");
+            },
+            
+            
+            //Usage
+            
+            dateUtil.bindDatePicker(".datepicker");
+            
+            //Jquery-UI ver "1.12.1" 
+            //http://jqueryui.com
+            
+            
