@@ -1,0 +1,312 @@
+
+//***********************************Index.html******Start*********************************************
+<!doctype html>
+<html>
+<head>
+<title>Welcome</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+<style rel="stylesheet">
+#wrapper{width: 960px; margin: 10px auto;}
+nav ul{padding: 0;}
+nav ul li{list-style-type: none; display: inline-block; margin-right: 10px;}
+#rewards{display: none;}
+#rewards ol{background-color: gray; padding: 10px; color: #fff;}
+#rewards ol li{list-style-position: inside;}
+</style>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<section id="wrapper">
+		<nav>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="register.html">Register</a></li>
+				<li><a href="specialOffer.html">Special Offer Page</a></li>
+                <li><a href="jquery-animate.html">Animation</a></li>
+			</ul>
+		</nav>
+		
+		<section>
+			<a href="#" id="getRewards">REWARDS POWERED BY MINI POINTS</a>
+			
+			<div id="rewards">
+				<ol>
+					<li>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, </li>
+					<li>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. </li>
+					<li>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</li>
+				</ol>
+			</div>
+		</section>
+	</section>	
+	
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			//On click of <_REWARDS POWERED BY MINI POINTS_> 
+			//********* (a) show a div with some content as slide down using jQuery *********
+			$('#getRewards').on('click', function(){
+				$('#rewards').slideDown(500, function(){
+					//********* (b) show a message **********
+					alert('Rewards successfully loaded!'); 
+					//********* (c) Do some CSS changes in jQuery ********** 
+					$('#rewards ol').css({
+						'background-color': 'beige',
+						'color': '#333'
+					});
+				});
+			});
+		});
+	</script>
+</body>
+</html>
+//***********************************Index.html******End*********************************************
+
+
+
+
+
+//***************************************************Register.html*******Start*****************************
+
+<!doctype html>
+<html>
+<head>
+<title>Register</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+<style rel="stylesheet">
+#wrapper{width: 960px; margin: 10px auto;}
+nav ul{padding: 0;}
+nav ul li{list-style-type: none; display: inline-block; margin-right: 10px;}
+.cardIcon{width: 60px; display: none; cursor: pointer;}
+</style>
+</head>
+
+<body>
+	<section id="wrapper">
+		<nav>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="register.html">Register</a></li>
+				<li><a href="specialOffer.html">Special Offer Page</a></li>
+                <li><a href="jquery-animate.html">Animation</a></li>
+			<ul>
+		</nav>
+		
+		<h2>Register for Coupons here</h2>
+		<section id="registerContent"></section>
+		
+		<section id="registrationSuccess"></section>
+		<br><br>
+		<img class="cardIcon" src="img/mastercard.jpg" id="masterCardImg">
+		<img class="cardIcon" src="img/visa.png" id="visaCardImg">
+	</section>	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			//************ (a) Add a label and dropdown and two buttons using jQuery.  ************
+			var initialContentStr = '<label><b>Select the type of card you wish to register for: </b></label>\
+			<select id="selectCardType">\
+				<option value="Master">Master</option>\
+				<option value="Visa">Visa</option>\
+			</select><br><br>\
+			<button id="registerBtn">Register</button> <button id="cancelBtn">Cancel</button>';
+			$('#registerContent').html(initialContentStr);
+			
+			//************ (d) Increase the image size on hover of that image. ************
+			$('.cardIcon').on('mouseenter', function(){
+				var el = $(this);
+				el.css({'width': '120px'});
+			});
+			$('.cardIcon').on('mouseleave', function(){
+				var el = $(this);
+				el.css({'width': '60px'});
+			});
+		});
+		
+		//************ (b) By click on Register button show the “congrats….” msg along with the selected dropdown value and a “Confirm” button.  ************
+		$(document).on('click', '#registerBtn', function(){
+			var registrationSuccessStr = '<br></br>Congrats! You\'ve opted to register for ' + $('#selectCardType').val() + 'card.<br><br><button id="confirmCard">Confirm</button>';
+			$('#registrationSuccess').html(registrationSuccessStr);
+		});
+		
+		//************ (c) Initially the image placed at bottom will be hidden. By click on Confirm button the image will be visible. ************
+		$(document).on('click', '#confirmCard', function(){
+			$('.cardIcon').hide();
+			if($('#selectCardType').val() == 'Master'){
+				$('#masterCardImg').show();
+			}
+			if($('#selectCardType').val() == 'Visa'){
+				$('#visaCardImg').show();
+			}
+		});
+	</script>
+</body>
+</html>
+//***************************************************Register.html*******End*****************************
+
+
+
+
+//***************************************************SpecialOffer.html*******Start*****************************
+
+<!doctype html>
+<html>
+<head>
+    <title>Special Offer</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+    <style rel="stylesheet">
+        #wrapper {
+            width: 960px;
+            margin: 10px auto;
+        }
+
+        nav ul {
+            padding: 0;
+        }
+
+            nav ul li {
+                list-style-type: none;
+                display: inline-block;
+                margin-right: 10px;
+            }
+
+        #joiningFeeResult {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="wrapper">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="specialOffer.html">Special Offer Page</a></li>
+                <li><a href="jquery-animate.html">Animation</a></li>
+                <ul>
+        </nav>
+
+        <button id="getCardDetails">Click here for detailed information about credit cards</button>
+
+        <section id="creditCardDetails"></section>
+
+        <h2>Get joining fee information for all cards</h2>
+        <label>Coose Card Type: </label>
+        <select id="cardTypeSel">
+            <option value="VISA">VISA</option>
+            <option value="MASTERCARD">MASTERCARD</option>
+        </select>
+        <br><br><button id="getJoiningFeeBtn">Get Joining Fee</button>
+        <br><br>
+        <section id="joiningFeeResult">
+            Card Type: <span id="cardTypeView"></span><br>
+            Joining Fees: <span id="joiningFees"></span>
+        </section>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //************ a. Load an external html file in a div  - in this case creditCardDetails.html ************
+            $('#getCardDetails').on('click', function () {
+                $('#creditCardDetails').load('creditCardDetails.html')
+            });
+
+
+            //*********** b. Select a value from card type dropdown and by click on Get Joining Fee button show the card type and joining fee.
+            // Do this filter based on an external JSON file which will be provided. ***************
+
+            $('#getJoiningFeeBtn').on('click', function () {
+                //$.getJSON can only be used from the server environment or a localhost
+                var externalJSONFileData = null;
+                $.getJSON("data.json", function (data) {
+                    console.log("API called");
+                    externalJSONFileData = data;
+                    console.log("externalJSONFileData" + JSON.stringify(externalJSONFileData));
+                    var selectedCardType = $('#cardTypeSel').val();
+                    $.each(externalJSONFileData.data.one, function (key, val) {
+                        //console.log("val:\n" + JSON.stringify(val));
+                        var card = val.card;
+                        var fees = val.fees;
+
+                        if (selectedCardType == card) {
+                            $('#joiningFeeResult').show(500, function () {
+                                $('#cardTypeView').text(card);
+                                $('#joiningFees').text(fees);
+                            });
+                        }
+                    });
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
+
+
+//***************************************************SpecialOffer.html*******End*****************************
+
+
+
+//***************************************************Jquery-Animate.html*******Start******************************
+
+<!doctype html>
+<html>
+<head>
+<title>jQuery Animate</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+<style type="text/css">
+#animeDiv{background-color: orange; color: #fff; width: 100px; height: 100px; font-size: 14px;}
+</style>
+</head>
+
+<body>
+	<button id="start">Start</button>
+	<button id="stop">Stop</button>
+	
+	<div id="animeDiv">
+		<p>Demo text. Funny text!</p>
+	</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		var alreadyAnime =  false;
+		
+		/* Start anime */
+		$('#start').on('click', function(){
+			if(!alreadyAnime){
+				$('#animeDiv').animate({
+					'width': '220px',
+					'height': '220px',
+					'font-size': '24px'
+					},
+					{
+						duration: 1000,
+						complete: function(){
+							console.log('complete');
+							$('#animeDiv').fadeOut(800, function(){
+								$('#animeDiv').fadeIn(800);
+								alreadyAnime = true;
+							})
+						}	
+					}
+				);
+				
+			}
+			
+		});
+		
+		/* Stop anime */
+		$('#stop').on('click', function(){
+			$('#animeDiv').animate().stop();
+		});
+	});
+</script>
+</body>
+</html>
+
+//***************************************************Jquery-animate.html*******End***************************
