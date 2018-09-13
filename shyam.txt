@@ -52,44 +52,4 @@ bindDatePicker: function (selector, settings) {
             
 
 
-var mult = multer({ dest: "uploads/" });
-        // aws.config.update({
-        //     signatureVersion: 'v4'
-        // });
-        var app = express(),
-            s3 = new aws.S3({
-                accessKeyId: "AKIAIN4LVSTYH53ZGPJA",
-                secretAccessKey: "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",
-                Bucket: "drgrep-staging",
-            });
-        app.use(bodyParser.json());
-        var upload = multer({
-            storage: multerS3({
-                s3: s3,
-                bucket: "drgrep-staging",
-                key: function (req: any, file: any, cb: any) {
-                    console.log(file);
-                    cb(null, "uploaded-files/" + Date.now().toString() + "." + mime.extension(file.mimetype)); //use Date.now() for unique file keys
-                }
-            })
-        });
-        
-        
-        this.app.post("/accounts/payable-receivable/upload", upload.single("file"), function (req: express.Request, res: express.Response) {
-            // console.log("STEP1:GET ARAP Module data\n" + req.query.sentInd);
-            // console.log("STEP1:ARAP Module data\n" + req.body);
-            // console.log(JSON.stringify(req));
-            // res.status(200).json({ message: "Succesfull" });
-            let arapObj: any = JSON.parse(req.body.jsonObj).data;
-            let file: any = req.file;
-            arapObj.iqp_file_path = file.location;
-            arapObj.iqp_file_name = file.fileName;
-            this._arapService.createEditInvoice(arapObj, req.query.sentInd,
-                function (isSuccessfull: boolean, iqpId: number, error: any) {
-                    if (error) {
-                        res.status(500).json({ message: error });
-                    } else {
-                        res.status(200).json({ message: "Successful", iqpId: iqpId });
-                    }
-                });
-        }.bind(this));
+
